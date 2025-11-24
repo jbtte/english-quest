@@ -1,27 +1,50 @@
 {
-  "title": "Lesson 1 – Playground",
-  "scene": "We're at a neighbourhood street. It's late afternoon and...",
+  "title": "Lesson 1 – The Strange Playground",
+  "scene": "Late afternoon. Two friends arrive at the playground. It feels normal... but kind of like when a game starts glitching. Something's off.",
   "script": [
-    "Hi, my name is John.",
-    "Hey, John! Want to play?",
-    "Sure!",
-    "Let's go to the playground!"
+    { "speaker": "A", "text": "Hey, you’re here! I thought I’d be alone." },
+    {
+      "speaker": "B",
+      "text": "Yeah… I'm not alone now, but I’m kinda nervous."
+    },
+    { "speaker": "A", "text": "Why? Everything *looks* ok." },
+    {
+      "speaker": "B",
+      "text": "I know, but it doesn’t *feel* ok. Like a lag before the boss fight."
+    },
+    { "speaker": "A", "text": "Hmm. Is there something behind the slide?" },
+    {
+      "speaker": "B",
+      "text": "Maybe. There’s a shadow. Or… maybe I’m just scared."
+    },
+    {
+      "speaker": "A",
+      "text": "No way. I'm scared too. Let’s check it together."
+    },
+    { "speaker": "B", "text": "Okay. You go first. I’m not ready." },
+    { "speaker": "A", "text": "Seriously?! I’m not ready either!" },
+    {
+      "speaker": "B",
+      "text": "Then… we go together. Ready or not… here we go."
+    }
   ],
   "vocabulary": [
     "playground",
-    "slide",
-    "swing",
-    "sand",
-    "ball",
+    "energy",
+    "power",
+    "strange",
     "run",
-    "catch"
+    "touch",
+    "escape",
+    "shadow",
+    "secret"
   ],
-  "emotion": ["excited", "shy", "curious", "nervous", "proud"],
+  "emotion": ["confused", "curious", "nervous", "brave", "excited"],
   "twist": [
-    "A dog suddenly appears.",
-    "It starts to rain.",
-    "The ball rolls into the street.",
-    "A new kid arrives.",
-    "The playground is closed."
+    "There’s something glowing under the swing.",
+    "It starts to rain… backwards.",
+    "You hear a voice whisper: “Time's almost up…”",
+    "Your phone buzzes: no signal. Just one word: RUN.",
+    "The ball floats. Someone (or something) is holding it."
   ]
 }

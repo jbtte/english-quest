@@ -26,28 +26,47 @@ document.addEventListener('DOMContentLoaded', () => {
   fetch(url)
     .then((res) => res.json())
     .then((data) => {
-      // Apenas o título (sem "Lesson 1...")
+      // título da lição (sem "Lesson 1")
       titleEl.textContent = data.title || '';
 
-      // Exibir introdução da cena
+      // introdução da cena
       sceneIntro.textContent = data.scene || '';
 
-      // Montar script, mas mantê-lo escondido até o clique
+      // montar script (com suporte a objetos {speaker, text} e strings simples)
       scriptList.innerHTML = '';
-      (data.script || []).forEach((line) => {
+      (data.script || []).forEach((entry) => {
+        let text;
+        let speaker = null;
+
+        if (typeof entry === 'string') {
+          text = entry;
+        } else {
+          text = entry.text || entry.line || '';
+          if (entry.speaker || entry.who) {
+            speaker = String(entry.speaker || entry.who).toUpperCase();
+          }
+        }
+
         const li = document.createElement('li');
-        li.textContent = line;
+        li.textContent = text;
+
+        if (speaker === 'A') {
+          li.classList.add('speaker-a');
+        } else if (speaker === 'B') {
+          li.classList.add('speaker-b');
+        }
+
         scriptList.appendChild(li);
       });
 
-      // Ao clicar em "Tap to start the script"
+      // clique para começar o script
       scriptStart.addEventListener('click', () => {
         sceneIntro.style.display = 'none';
         scriptStart.style.display = 'none';
         scriptList.classList.remove('hidden');
       });
 
-      // Guardar os arrays para os cards
+      // guardar arrays para os cards
       window.englishQuestLesson = {
         vocabulary: data.vocabulary || [],
         emotion: data.emotion || [],
@@ -59,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
       titleEl.textContent = 'Error loading lesson';
     });
 
-  // Listeners dos cards (sem títulos)
+  // listeners dos cards
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
       const type = card.dataset.type;
