@@ -1,0 +1,27 @@
+{
+  "title": "Lesson 1 – Playground",
+  "scene": "We're at a neighbourhood street. It's late afternoon and...",
+  "script": [
+    "Hi, my name is John.",
+    "Hey, John! Want to play?",
+    "Sure!",
+    "Let's go to the playground!"
+  ],
+  "vocabulary": [
+    "playground",
+    "slide",
+    "swing",
+    "sand",
+    "ball",
+    "run",
+    "catch"
+  ],
+  "emotion": ["excited", "shy", "curious", "nervous", "proud"],
+  "twist": [
+    "A dog suddenly appears.",
+    "It starts to rain.",
+    "The ball rolls into the street.",
+    "A new kid arrives.",
+    "The playground is closed."
+  ]
+}

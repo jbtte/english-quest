@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>English Quest</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="dark">
+    <div class="app-container home-screen">
+      <header class="app-header">
+        <h1>English Quest</h1>
+        <p class="subtitle">When this music starts, only English is allowed!</p>
+      </header>
+
+      <main>
+        <section class="music-section">
+          <button id="start-english-mode" class="primary-btn">
+            🎧 Start English Mode
+          </button>
+          <audio id="theme-audio" src="audio/theme.mp3" loop></audio>
+          <p class="hint">
+            Tap the button to play the theme and enter English mode.
+          </p>
+        </section>
+
+        <section class="lessons-grid">
+          <h2>Choose your quest</h2>
+          <div class="grid">
+            <!-- 8 aulas como no seu desenho -->
+            <a href="lesson.html?lesson=1" class="lesson-card">1</a>
+            <a href="lesson.html?lesson=2" class="lesson-card">2</a>
+            <a href="lesson.html?lesson=3" class="lesson-card">3</a>
+            <a href="lesson.html?lesson=4" class="lesson-card">4</a>
+            <a href="lesson.html?lesson=5" class="lesson-card">5</a>
+            <a href="lesson.html?lesson=6" class="lesson-card">6</a>
+            <a href="lesson.html?lesson=7" class="lesson-card">7</a>
+            <a href="lesson.html?lesson=8" class="lesson-card">8</a>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>

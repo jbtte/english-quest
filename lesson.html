@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>English Quest – Lesson</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="dark">
+    <div class="app-container lesson-screen">
+      <header class="lesson-header">
+        <a href="index.html" class="back-link">← Back</a>
+        <h1 id="lesson-title">Lesson</h1>
+      </header>
+
+      <main class="lesson-layout">
+        <!-- Lado maior: script -->
+        <section class="script-panel">
+          <div id="scene-intro" class="scene-intro"></div>
+          <p id="script-start" class="script-start">Tap to start the script</p>
+          <ul id="script-list" class="script-list hidden"></ul>
+        </section>
+
+        <!-- Lado menor: cards -->
+        <section class="cards-panel">
+          <div class="card" data-type="vocabulary">
+            <p class="card-output" id="vocabulary-output">Tap for a word</p>
+          </div>
+
+          <div class="card" data-type="emotion">
+            <p class="card-output" id="emotion-output">Tap for an emotion</p>
+          </div>
+
+          <div class="card" data-type="twist">
+            <p class="card-output" id="twist-output">Tap for a twist</p>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="lesson.js"></script>
+  </body>
+</html>
