@@ -1,9 +1,13 @@
-/* base */
+/* ================== BASE ================== */
+
 body.dark {
   margin: 0;
   font-family: "Baloo 2", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: #000;
-  color: #fff;
+  background: #050505;
+  color: #f2f2f2;
+  font-size: 22px;
+  line-height: 1.5;
+  font-weight: 500;
 }
 
 .app-container {
@@ -12,7 +16,7 @@ body.dark {
   box-sizing: border-box;
 }
 
-/* home */
+/* ================== HOME (index.html) ================== */
 
 .app-header {
   text-align: center;
@@ -21,7 +25,7 @@ body.dark {
 
 .app-header h1 {
   margin: 0;
-  font-size: 2.2rem;
+  font-size: 2.4rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -37,7 +41,7 @@ body.dark {
 }
 
 .primary-btn {
-  background: #fff;
+  background: #f2f2f2;
   color: #000;
   border: none;
   padding: 12px 24px;
@@ -51,7 +55,7 @@ body.dark {
 }
 
 .hint {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: #aaa;
   margin-top: 8px;
 }
@@ -63,7 +67,7 @@ body.dark {
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(50px, 1fr));
+  grid-template-columns: repeat(4, minmax(60px, 1fr));
   gap: 12px;
   max-width: 600px;
   margin: 0 auto;
@@ -75,16 +79,16 @@ body.dark {
   text-align: center;
   padding: 18px 0;
   text-decoration: none;
-  color: #fff;
-  font-size: 1.2rem;
+  color: #f2f2f2;
+  font-size: 1.3rem;
 }
 
 .lesson-card:hover,
 .lesson-card:active {
-  background: #222;
+  background: #151515;
 }
 
-/* tela da lição */
+/* ================== LESSON (lesson.html) ================== */
 
 .lesson-header {
   display: flex;
@@ -94,70 +98,50 @@ body.dark {
 }
 
 .lesson-header h1 {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   margin: 0;
 }
 
 .back-link {
   color: #aaa;
   text-decoration: none;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
 }
 
 .back-link:hover {
   text-decoration: underline;
 }
 
-/* layout principal: script + cards */
+/* layout geral: script + cards */
 
 .lesson-layout {
   display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 16px;
+  grid-template-columns: 3fr 1fr;
+  gap: 12px;
+  max-width: 95vw;
+  margin: 0 auto;
+}
+
+/* script panel */
+
+.script-panel {
+  border: 1px solid #333;
+  border-radius: 12px;
+  padding: 16px;
+  box-sizing: border-box;
 }
 
 .scene-intro {
-  font-size: 1rem;
-  color: #ccc;
-  margin-bottom: 12px;
+  font-size: 24px;
+  color: #dddddd;
+  margin-bottom: 16px;
 }
 
 .script-start {
-  font-size: 1rem;
+  font-size: 24px;
   text-decoration: underline;
   cursor: pointer;
-  margin-bottom: 12px;
-}
-
-.hidden {
-  display: none;
-}
-
-/* aumentar o tamanho do "Tap for ..." */
-.card-output {
-  font-size: 1.05rem; /* antes 0.95 */
-  text-align: center;
-}
-
-
-/* em telas menores (se usar iphone etc.) empilha */
-@media (max-width: 800px) {
-  .lesson-layout {
-    grid-template-columns: 1fr;
-  }
-}
-
-.script-panel,
-.cards-panel {
-  border: none;
-  padding: 8px 0;
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-
-.script-panel h2 {
-  margin-top: 0;
+  margin-bottom: 16px;
 }
 
 .script-list {
@@ -167,17 +151,37 @@ body.dark {
 }
 
 .script-list li {
-  margin-bottom: 8px;
+  font-size: 26px;
+  line-height: 1.5;
+  margin-bottom: 12px;
   padding-left: 8px;
   border-left: 2px solid #444;
 }
 
-/* cards à direita */
+.hidden {
+  display: none;
+}
+
+/* personagens A e B com cores diferentes */
+
+.script-list li.speaker-a {
+  color: #ffce66;
+  text-shadow: 0 0 6px rgba(255, 206, 102, 0.6);
+}
+
+.script-list li.speaker-b {
+  color: #80d8ff;
+  text-shadow: 0 0 6px rgba(128, 216, 255, 0.6);
+}
+
+/* ================== CARDS ================== */
 
 .cards-panel {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 18px;
+  padding: 8px 0;
+  box-sizing: border-box;
 }
 
 .card {
@@ -190,22 +194,6 @@ body.dark {
   text-align: center;
 }
 
-.card h3 {
-  margin: 0 0 6px;
-  font-size: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-
-/* “Tap for …” com cara de botão minimalista */
-.card-output {
-  margin: 0;
-  font-size: 1.1rem;
-  color: #fff;
-  border-bottom: 1px solid #444;
-  padding-bottom: 6px;
-}
-
 .card:hover {
   transform: scale(1.01);
 }
@@ -214,29 +202,43 @@ body.dark {
   transform: scale(0.97);
 }
 
-/* leve diferenciação por tipo (sem depender de cor forte) */
-
-.card[data-type="vocabulary"] h3::after {
-  content: " ★";
-  font-size: 0.8rem;
+.card-output {
+  margin: 0;
+  font-size: 24px;
+  color: #f2f2f2;
+  border-bottom: 2px solid #444;
+  padding-bottom: 8px;
 }
 
-.card[data-type="emotion"] h3::after {
-  content: " ♥";
-  font-size: 0.8rem;
+/* ================== RESPONSIVO ================== */
+
+@media (max-width: 800px) {
+  .lesson-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .cards-panel {
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 24px;
+  }
+
+  .card-output {
+    font-size: 20px;
+    padding-bottom: 6px;
+  }
 }
 
-.card[data-type="twist"] h3::after {
-  content: " ?";
+@media (orientation: landscape) and (min-width: 900px) {
+  body.dark {
+    font-size: 24px;
+  }
 
-  font-size: 0.8rem;
-}
+  .script-list li {
+    font-size: 28px;
+  }
 
-/* cores diferentes para cada personagem do diálogo */
-.script-list li.speaker-a {
-  color: #ffd36b; /* amarelo quente */
-}
-
-.script-list li.speaker-b {
-  color: #6bd4ff; /* azul claro */
+  .card-output {
+    font-size: 26px;
+  }
 }
