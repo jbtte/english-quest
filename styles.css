@@ -242,3 +242,20 @@ body.dark {
     font-size: 26px;
   }
 }
+
+/* palavras candidatas à troca no script */
+.swap-candidate {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 0 3px;
+  border-radius: 4px;
+  border-bottom: 2px dashed #888;
+}
+
+/* mantém o brilho de A/B mesmo com highlight */
+.script-list li.speaker-a .swap-candidate {
+  text-shadow: 0 0 6px rgba(255, 206, 102, 0.9);
+}
+
+.script-list li.speaker-b .swap-candidate {
+  text-shadow: 0 0 6px rgba(128, 216, 255, 0.9);
+}

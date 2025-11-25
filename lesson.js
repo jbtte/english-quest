@@ -10,6 +10,18 @@ function randomFromArray(arr) {
   return arr[index];
 }
 
+/**
+ * Converte texto com [palavras] marcadas em spans destacadas.
+ * Ex: "I'm [alone] here" -> "I'm <span class='swap-candidate'>alone</span> here"
+ */
+function buildHighlightedHTML(text) {
+  if (!text) return '';
+  return text.replace(
+    /\[([^\]]+)\]/g,
+    '<span class="swap-candidate">$1</span>'
+  );
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   const lessonNumber = getLessonNumber();
   const url = `lessons/lesson${lessonNumber}.json`;
@@ -26,13 +38,13 @@ document.addEventListener('DOMContentLoaded', () => {
   fetch(url)
     .then((res) => res.json())
     .then((data) => {
-      // título da lição (sem "Lesson 1")
+      // título
       titleEl.textContent = data.title || '';
 
-      // introdução da cena
+      // cena
       sceneIntro.textContent = data.scene || '';
 
-      // montar script (com suporte a objetos {speaker, text} e strings simples)
+      // montar script (com speaker A/B e highlight de [palavras])
       scriptList.innerHTML = '';
       (data.script || []).forEach((entry) => {
         let text;
@@ -48,14 +60,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const li = document.createElement('li');
-        li.textContent = text;
 
+        // aplica A/B
         if (speaker === 'A') {
           li.classList.add('speaker-a');
         } else if (speaker === 'B') {
           li.classList.add('speaker-b');
         }
 
+        // insere texto com highlights
+        li.innerHTML = buildHighlightedHTML(text);
         scriptList.appendChild(li);
       });
 
@@ -78,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
       titleEl.textContent = 'Error loading lesson';
     });
 
-  // listeners dos cards
+  // cards
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
       const type = card.dataset.type;

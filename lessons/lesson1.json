@@ -5,17 +5,17 @@
     { "speaker": "A", "text": "Hey, you’re here! I thought I’d be alone." },
     {
       "speaker": "B",
-      "text": "Yeah… I'm not alone now, but I’m kinda nervous."
+      "text": "Yeah… I'm not alone now, but I’m kinda [nervous]."
     },
-    { "speaker": "A", "text": "Why? Everything *looks* ok." },
+    { "speaker": "A", "text": "Why? Everything [*looks*] ok." },
     {
       "speaker": "B",
-      "text": "I know, but it doesn’t *feel* ok. Like a lag before the boss fight."
+      "text": "I know, but it doesn’t [*feel*] ok. Like a lag before the boss fight."
     },
-    { "speaker": "A", "text": "Hmm. Is there something behind the slide?" },
+    { "speaker": "A", "text": "Hmm. Is there something behind the [slide]?" },
     {
       "speaker": "B",
-      "text": "Maybe. There’s a shadow. Or… maybe I’m just scared."
+      "text": "Maybe. There’s a [shadow]. Or… maybe I’m just scared."
     },
     {
       "speaker": "A",
