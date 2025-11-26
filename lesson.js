@@ -11,15 +11,74 @@ function randomFromArray(arr) {
 }
 
 /**
- * Converte texto com [palavras] marcadas em spans destacadas.
- * Ex: "I'm [alone] here" -> "I'm <span class='swap-candidate'>alone</span> here"
+ * Converte texto com [palavras] marcadas em spans clicáveis.
+ * Ex: "I'm [alone] here" -> "I'm <span class='swap-candidate' data-key='alone'>alone</span> here"
  */
-function buildHighlightedHTML(text) {
+function buildHighlightedHTML(text, optionsMap) {
   if (!text) return '';
-  return text.replace(
-    /\[([^\]]+)\]/g,
-    '<span class="swap-candidate">$1</span>'
-  );
+  return text.replace(/\[([^\]]+)\]/g, (match, rawWord) => {
+    const key = rawWord.trim();
+    const hasOptions = optionsMap && optionsMap[key];
+    const dataAttr = hasOptions ? ` data-key="${key}"` : ` data-key="${key}"`;
+    // exibimos a palavra "crua" (sem colchetes)
+    return `<span class="swap-candidate"${dataAttr}>${key}</span>`;
+  });
+}
+
+let swapPopupEl = null;
+let currentSwapSpan = null;
+
+function ensureSwapPopup() {
+  if (!swapPopupEl) {
+    swapPopupEl = document.createElement('div');
+    swapPopupEl.className = 'swap-popup';
+    swapPopupEl.style.display = 'none';
+    document.body.appendChild(swapPopupEl);
+  }
+  return swapPopupEl;
+}
+
+function openSwapPopupForSpan(span) {
+  const popup = ensureSwapPopup();
+  popup.innerHTML = '';
+
+  const key = span.dataset.key || span.textContent.trim();
+  const optionsMap = window.swapOptions || {};
+  const options =
+    optionsMap[key] && optionsMap[key].length > 0
+      ? optionsMap[key]
+      : [span.textContent.trim()];
+
+  options.forEach((opt) => {
+    const div = document.createElement('div');
+    div.className = 'swap-option';
+    div.textContent = opt;
+    div.addEventListener('click', (event) => {
+      event.stopPropagation();
+      // troca o texto da palavra e mantém data-key para permitir trocar de novo
+      span.textContent = opt;
+      closeSwapPopup();
+    });
+    popup.appendChild(div);
+  });
+
+  // posicionar popup perto da palavra
+  const rect = span.getBoundingClientRect();
+  const scrollX = window.scrollX || window.pageXOffset;
+  const scrollY = window.scrollY || window.pageYOffset;
+
+  popup.style.left = `${scrollX + rect.left}px`;
+  popup.style.top = `${scrollY + rect.bottom + 8}px`;
+  popup.style.display = 'block';
+
+  currentSwapSpan = span;
+}
+
+function closeSwapPopup() {
+  if (swapPopupEl) {
+    swapPopupEl.style.display = 'none';
+  }
+  currentSwapSpan = null;
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -44,7 +103,10 @@ document.addEventListener('DOMContentLoaded', () => {
       // cena
       sceneIntro.textContent = data.scene || '';
 
-      // montar script (com speaker A/B e highlight de [palavras])
+      // guardar opções de troca vindas do JSON
+      window.swapOptions = data.options || {};
+
+      // montar script (com speaker A/B + palavras clicáveis)
       scriptList.innerHTML = '';
       (data.script || []).forEach((entry) => {
         let text;
@@ -61,15 +123,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const li = document.createElement('li');
 
-        // aplica A/B
         if (speaker === 'A') {
           li.classList.add('speaker-a');
         } else if (speaker === 'B') {
           li.classList.add('speaker-b');
         }
 
-        // insere texto com highlights
-        li.innerHTML = buildHighlightedHTML(text);
+        li.innerHTML = buildHighlightedHTML(text, window.swapOptions);
         scriptList.appendChild(li);
       });
 
@@ -92,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
       titleEl.textContent = 'Error loading lesson';
     });
 
-  // cards
+  // clique nos cards
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
       const type = card.dataset.type;
@@ -108,5 +168,30 @@ document.addEventListener('DOMContentLoaded', () => {
         twistOutput.textContent = value;
       }
     });
+  });
+
+  // clique global para lidar com popup de opções
+  document.addEventListener('click', (event) => {
+    const target = event.target;
+
+    // se clicou numa palavra destacada
+    if (target.classList && target.classList.contains('swap-candidate')) {
+      event.stopPropagation();
+      openSwapPopupForSpan(target);
+      return;
+    }
+
+    // se clicou dentro do popup, não fecha aqui (cada opção já trata o clique)
+    if (
+      swapPopupEl &&
+      (target === swapPopupEl || swapPopupEl.contains(target))
+    ) {
+      return;
+    }
+
+    // clique fora: fecha popup
+    if (swapPopupEl && swapPopupEl.style.display === 'block') {
+      closeSwapPopup();
+    }
   });
 });

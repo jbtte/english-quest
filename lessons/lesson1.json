@@ -1,50 +1,63 @@
 {
-  "title": "Lesson 1 – The Strange Playground",
-  "scene": "Late afternoon. Two friends arrive at the playground. It feels normal... but kind of like when a game starts glitching. Something's off.",
+  "title": "Lesson 1 – Pokémon Lab Test",
+  "scene": "Ash finally reaches Professor Oak’s lab. He tries to pick his first Pokémon… but things don’t go as planned.",
+
   "script": [
-    { "speaker": "A", "text": "Hey, you’re here! I thought I’d be alone." },
     {
-      "speaker": "B",
-      "text": "Yeah… I'm not alone now, but I’m kinda [nervous]."
+      "speaker": "A",
+      "text": "I thought a lot… and I finally decided to choose [Squirtle]."
     },
-    { "speaker": "A", "text": "Why? Everything [*looks*] ok." },
     {
       "speaker": "B",
-      "text": "I know, but it doesn’t [*feel*] ok. Like a lag before the boss fight."
-    },
-    { "speaker": "A", "text": "Hmm. Is there something behind the [slide]?" },
-    {
-      "speaker": "B",
-      "text": "Maybe. There’s a [shadow]. Or… maybe I’m just scared."
+      "text": "Hmm… there is a problem. That one is already [gone]."
     },
     {
       "speaker": "A",
-      "text": "No way. I'm scared too. Let’s check it together."
+      "text": "Okay… then I'll choose [Bulbasaur]!"
     },
-    { "speaker": "B", "text": "Okay. You go first. I’m not ready." },
-    { "speaker": "A", "text": "Seriously?! I’m not ready either!" },
     {
       "speaker": "B",
-      "text": "Then… we go together. Ready or not… here we go."
+      "text": "Sorry… that one is also [taken]."
+    },
+    {
+      "speaker": "A",
+      "text": "No way! Is there any Pokémon [left]?"
+    },
+    {
+      "speaker": "B",
+      "text": "Well… there is still one. But it's a little… [different]."
+    },
+    {
+      "speaker": "A",
+      "text": "I'll take it! I’m ready!"
+    },
+    {
+      "speaker": "B",
+      "text": "Here it comes…"
+    },
+    {
+      "speaker": "A",
+      "text": "Oh! Hi, [Pikachu]!"
     }
   ],
-  "vocabulary": [
-    "playground",
-    "energy",
-    "power",
-    "strange",
-    "run",
-    "touch",
-    "escape",
-    "shadow",
-    "secret"
-  ],
-  "emotion": ["confused", "curious", "nervous", "brave", "excited"],
+
+  "options": {
+    "Squirtle": ["Squirtle", "Charmander"],
+    "gone": ["gone", "taken"],
+    "Bulbasaur": ["Bulbasaur", "Charmander"],
+    "taken": ["taken", "picked"],
+    "left": ["left", "here"],
+    "different": ["different", "strange"],
+    "Pikachu": ["Pikachu", "my Pokémon"]
+  },
+
+  "vocabulary": ["gone", "taken", "left", "strange", "ready", "choose"],
+
+  "emotion": ["surprised", "curious", "excited"],
+
   "twist": [
-    "There’s something glowing under the swing.",
-    "It starts to rain… backwards.",
-    "You hear a voice whisper: “Time's almost up…”",
-    "Your phone buzzes: no signal. Just one word: RUN.",
-    "The ball floats. Someone (or something) is holding it."
+    "Pikachu sparks electricity for no reason.",
+    "The Pokéball opens by itself.",
+    "There is a strange sound behind the machine."
   ]
 }

@@ -10,6 +10,7 @@ body.dark {
   font-weight: 500;
 }
 
+
 .app-container {
   min-height: 100vh;
   padding: 16px;
@@ -124,6 +125,13 @@ body.dark {
 
 /* script panel */
 
+.script-panel,
+.scene-intro,
+.script-list li {
+  font-family: "Indie Flower", "Baloo 2", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-weight: 400;
+}
+
 .script-panel {
   border: 1px solid #333;
   border-radius: 12px;
@@ -172,6 +180,47 @@ body.dark {
 .script-list li.speaker-b {
   color: #80d8ff;
   text-shadow: 0 0 6px rgba(128, 216, 255, 0.6);
+}
+
+/* palavras candidatas à troca no script */
+.swap-candidate {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 0 3px;
+  border-radius: 4px;
+  border-bottom: 2px dashed #888;
+  cursor: pointer;
+}
+
+/* mantém o brilho de A e B mesmo no highlight */
+.script-list li.speaker-a .swap-candidate {
+  text-shadow: 0 0 6px rgba(255, 206, 102, 0.9);
+}
+
+.script-list li.speaker-b .swap-candidate {
+  text-shadow: 0 0 6px rgba(128, 216, 255, 0.9);
+}
+
+/* popup de opções ao tocar na palavra */
+.swap-popup {
+  position: absolute;
+  background: #151515;
+  border: 1px solid #555;
+  border-radius: 8px;
+  padding: 6px 0;
+  z-index: 1000;
+  min-width: 120px;
+  max-width: 240px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+}
+
+.swap-option {
+  padding: 6px 12px;
+  font-size: 20px;
+  white-space: nowrap;
+}
+
+.swap-option:hover {
+  background: #222;
 }
 
 /* ================== CARDS ================== */
