@@ -1,53 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <title>Pokémon English – Card Randomizer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Fonte -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600&family=Indie+Flower&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&display=swap"
       rel="stylesheet"
     />
 
-    <meta charset="UTF-8" />
-    <title>English Quest</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body class="dark">
-    <div class="app-container home-screen">
+    <div class="app-container randomizer-screen">
       <header class="app-header">
-        <h1>English Quest</h1>
-        <p class="subtitle">When this music starts, only English is allowed!</p>
+        <h1>Pokémon English</h1>
+        <p class="subtitle">Card Randomizer</p>
       </header>
 
       <main>
-        <section class="music-section">
-          <button id="start-english-mode" class="primary-btn">
-            🎧 Start English Mode
-          </button>
-          <audio id="theme-audio" src="audio/theme.mp3" loop></audio>
-          <p class="hint">
-            Tap the button to play the theme and enter English mode.
-          </p>
+        <!-- Seleção de lição (quase como o index original) -->
+        <section class="lessons-grid">
+          <h2>Choose lesson</h2>
+          <div class="grid">
+            <button class="lesson-card" data-lesson="1">1</button>
+            <button class="lesson-card" data-lesson="2">2</button>
+            <button class="lesson-card" data-lesson="3">3</button>
+            <button class="lesson-card" data-lesson="4">4</button>
+            <button class="lesson-card" data-lesson="5">5</button>
+            <button class="lesson-card" data-lesson="6">6</button>
+            <button class="lesson-card" data-lesson="7">7</button>
+            <button class="lesson-card" data-lesson="8">8</button>
+          </div>
         </section>
 
-        <section class="lessons-grid">
-          <h2>Choose your quest</h2>
-          <div class="grid">
-            <!-- 8 aulas como no seu desenho -->
-            <a href="lesson.html?lesson=1" class="lesson-card">1</a>
-            <a href="lesson.html?lesson=2" class="lesson-card">2</a>
-            <a href="lesson.html?lesson=3" class="lesson-card">3</a>
-            <a href="lesson.html?lesson=4" class="lesson-card">4</a>
-            <a href="lesson.html?lesson=5" class="lesson-card">5</a>
-            <a href="lesson.html?lesson=6" class="lesson-card">6</a>
-            <a href="lesson.html?lesson=7" class="lesson-card">7</a>
-            <a href="lesson.html?lesson=8" class="lesson-card">8</a>
+        <!-- título da aula -->
+        <div id="lesson-title" class="lesson-title">
+          Choose a lesson to start
+        </div>
+
+        <!-- card sorteado: tela escura, palavra gigante -->
+        <section id="card-display" class="card-display card-normal">
+          <div id="card-type-label" class="card-type-label"></div>
+          <div id="card-text" class="card-text">Draw a card</div>
+        </section>
+
+        <!-- botão principal -->
+        <div class="draw-button-wrapper">
+          <button id="draw-button" class="primary-btn big">Draw card</button>
+        </div>
+
+        <!-- BOTÃO DE FOCUS -->
+        <div class="focus-controls">
+          <button id="enter-focus-btn" class="secondary-btn focus-enter-btn">
+            Enter focus mode
+          </button>
+          <button id="exit-focus-btn" class="secondary-btn focus-exit-btn">
+            Exit focus mode
+          </button>
+        </div>
+
+        <!-- painel de configurações -->
+        <section id="settings-panel" class="settings-panel">
+          <h2>Settings</h2>
+
+          <div class="setting-row">
+            <label for="setting-allow-repeats">
+              <input type="checkbox" id="setting-allow-repeats" />
+              Allow repeats
+            </label>
           </div>
+
+          <div class="setting-row">
+            <span>Card types:</span>
+            <label>
+              <input
+                type="checkbox"
+                class="type-filter"
+                value="word_sparks"
+                checked
+              />
+              Word
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                class="type-filter"
+                value="emotion_triggers"
+                checked
+              />
+              Emotion
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                class="type-filter"
+                value="event_cards"
+                checked
+              />
+              Event
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                class="type-filter"
+                value="mystery_cards"
+                checked
+              />
+              Mystery
+            </label>
+          </div>
+
+          <button id="reset-button" class="secondary-btn">Reset deck</button>
+        </section>
+
+        <!-- histórico -->
+        <section class="history-panel">
+          <h2>History</h2>
+          <ul id="history-list" class="history-list">
+            <!-- últimas cartas sorteadas -->
+          </ul>
         </section>
       </main>
     </div>
 
-    <script src="main.js"></script>
+    <script src="randomizer.js"></script>
   </body>
 </html>

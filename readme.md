@@ -1,141 +1,151 @@
-# English Quest 🎭📚
+# Pokémon English — Card Randomizer
 
-App web simples (HTML/CSS/JS) para apoiar sessões de conversação em inglês com crianças. Funciona em iPad via GitHub Pages. Interface clean, estímulo lúdico e interação baseada em improvisação guiada.
-
----
-
-## 🎮 Objetivo
-
-Criar um ambiente imersivo e divertido para conversação:
-
-- Tema **“English Quest”**: ao iniciar a música, só vale falar inglês.
-- Cada aula carrega um **JSON** com:
-  - Cena introdutória
-  - Diálogo/script
-  - Palavras aleatórias para *vocabulário*, *emoção* e *twist*
-- O adulto conduz a conversa improvisando a partir desses elementos.
+Um app simples e responsivo para **sortear cartas temáticas** usadas em improvisação de inglês durante cenas de Pokémon ou situações do dia a dia.  
+Desenvolvido para ser usado principalmente **no celular**, com um modo especial de **Focus Mode** para reduzir distrações durante a aula.
 
 ---
 
-## 🗂️ Estrutura de pastas
+## 📱 Funcionalidade
 
-```text
-english-quest/
-├─ index.html          # Tela inicial
-├─ lesson.html         # Tela de aula
-├─ styles.css          # Estilos
-├─ main.js             # Lógica tela inicial
-├─ lesson.js           # Lógica da tela de aula
-├─ audio/
-│  └─ theme.mp3        # Áudio de ativação modo inglês
-└─ lessons/
-   ├─ lesson1.json
-   ├─ lesson2.json
-   └─ ...
+O app permite:
+
+- Escolher uma lição (lesson) e carregar seu baralho.
+- Sortear cartas de quatro tipos:
+  - **Word Sparks**
+  - **Emotion Triggers**
+  - **Event Cards**
+  - **Mystery Cards** (com revelação ao toque)
+- Controlar se as cartas podem se repetir ou não.
+- Filtrar quais tipos de cartas entram no sorteio.
+- Ver um pequeno histórico das cartas sorteadas.
+- Ativar o **Focus Mode**:
+  - Esconde histórico, settings e grid de lições.
+  - Expande o card para ocupar grande parte da tela.
+  - Mantém apenas o botão **Draw card** e o card atual.
+  - Ideal para improvisação em tempo real com as crianças.
+
+---
+
+## 🧱 Estrutura do Projeto
+
+```
+/
+│
+├── index.html          # página única do app
+├── styles.css          # estilos (mobile-first, dark theme)
+├── randomizer.js       # lógica do sorteio e estado do app
+│
+└── lessons/            # JSONs das lições
+    ├── lesson1.json
+    ├── lesson2.json
+    ├── ...
 ```
 
 ---
 
-## 🖥️ Como usar
+## 🎴 Formato dos Arquivos de Aula (JSON)
 
-### 1. Abrir via GitHub Pages
-Ao acessar a página:
-
-- Clicar em **“Start English Mode”** → toca a música  
-- Escolher uma lição → abre `lesson.html?lesson=n`
-
-### 2. Durante a aula
-
-1. Exibe **cena introdutória**
-2. Botão: _“Tap to start the script”_
-3. Mostra o diálogo
-4. Cards clicáveis:
-   - *Tap for vocabulary*
-   - *Tap for emotion*
-   - *Tap for twist*
-
-Cada clique sorteia um elemento, guiando a improvisação da conversa.
-
----
-
-## 📄 Exemplo de JSON
+Cada lição segue o formato:
 
 ```json
 {
-  "title": "Playground",
-  "scene": "We're at a neighbourhood street. It's late afternoon and...",
-  "script": [
-    { "speaker": "A", "text": "Hi, my name is John." },
-    { "speaker": "B", "text": "Hey! Want to play?" },
-    { "speaker": "A", "text": "Sure!" }
-  ],
-  "vocabulary": ["playground", "slide", "swing"],
-  "emotion": ["excited", "shy", "curious"],
-  "twist": ["A dog suddenly appears."]
+  "lesson": {
+    "lesson_number": 2,
+    "title": "Lesson 2 – Pokémon Emergency",
+    "cards_deck": {
+      "word_sparks": ["popcorn", "charger", "cookie", "hoodie"],
+      "emotion_triggers": ["suspicious", "scared", "annoyed", "relieved"],
+      "event_cards": [
+        "Object Drop!",
+        "Time is running out!",
+        "Something moves in your pocket!",
+        "A Pokémon cries!"
+      ],
+      "mystery_cards": [
+        "Hidden Object",
+        "Hidden Emotion",
+        "Hidden Problem",
+        "Hidden Reason"
+      ]
+    }
+  }
 }
 ```
 
----
+### Observações:
 
-## 🔧 Tecnologias
-
-- HTML5 / CSS3 / JS puro
-- Fonte: **Baloo 2** (Google Fonts)
-- Sem dependências externas
-- Otimizado para iPad
+- `total_cards` é opcional e ignorado (o app calcula automaticamente).
+- Você pode criar quantas lições quiser.
+- O nome do arquivo deve seguir o padrão: `lessonX.json`.
 
 ---
 
-## 📌 Customização
+## 🔍 Lógica de Sorteio
 
-| O que alterar                              | Onde                 |
-|--------------------------------------------|----------------------|
-| Script, vocabulário, emoção, twists        | `lessons/*.json`     |
-| Fonte, cores, espaçamento                  | `styles.css`         |
-| Lógica dos cards / comportamento da cena   | `lesson.js`          |
-| Número de lições / links                   | `index.html`         |
+Ao clicar em **Draw card**, o app:
 
----
+1. Filtra as cartas pelos tipos habilitados.
+2. Remove cartas já usadas (se “Allow repeats” estiver desligado).
+3. Escolhe uma carta aleatória do pool restante.
+4. Marca a carta como _used_, se aplicável.
+5. Atualiza o card na tela.
+6. Registra no histórico.
 
-## 🚀 Deploy no GitHub Pages
-
-1. Suba para a branch `main`
-2. Vá em **Settings → Pages**
-3. Configure:
-   - **Branch:** `main`
-   - **Folder:** `/ (root)`
-4. Acesse:
-
-```
-https://<seu-usuario>.github.io/english-quest/
-```
+Para cartas **Mystery**, a palavra aparece oculta.  
+Ao tocar no card, a palavra é revelada.
 
 ---
 
-## 🧠 Ideias futuras
+## 🎯 Focus Mode
 
-- Sonorização por cena
-- Animação na transição da cena
-- Personagens nomeados (não só A/B)
-- Registro de frases usadas
-- Tema “fantasia”, “espiões” etc. mudando apenas o JSON
+O **Focus Mode** foi criado para minimizar distrações durante a improvisação.
 
----
+- O grid de lições desaparece.
+- O painel de configurações desaparece.
+- O histórico desaparece.
+- O card ocupa grande parte da tela.
+- A fonte da palavra aumenta.
+- A UI fica “limpa” como um quadro negro.
 
-## 👨‍👧 Público-alvo
-
-- Crianças de **8 a 12 anos**
-- Sessões curtas de conversação guiada
-- Experiência lúdica e envolvente
+Perfeito para deixar o celular como dispositivo principal enquanto o iPad projeta outra atividade.
 
 ---
 
-## ✍️ Autor
+## 🛠 Tecnologias
 
-Criado por **João Paulo** como ferramenta de apoio para conversação em inglês com seus filhos.
+- **HTML single page**
+- **CSS mobile-first**, dark mode, fontes Google Fonts
+- **JavaScript puro** (zero dependências)
+- **JSON externo** para os decks
+- Feito para funcionar perfeitamente no **GitHub Pages**
 
 ---
 
-## 🎧🇬🇧 English only beyond this point
+## 🚀 Como adicionar novas lições
 
-_A música começou. Now… let the quest begin!_ 🔥
+1. Crie um arquivo em `/lessons/`  
+   Ex: `lessons/lesson5.json`
+2. Siga o formato do JSON mostrado acima.
+3. Adicione o número da lição na UI, se desejar.
+
+---
+
+## 📦 Como rodar
+
+Não precisa de servidor.  
+Basta abrir `index.html` localmente ou hospedar no GitHub Pages.
+
+---
+
+## ✔ Status
+
+App totalmente funcional, com:
+
+- Escolha de lição
+- Sorteio com filtros
+- Mystery reveal
+- Focus mode
+- Histórico
+- Visual limpo e pronto para uso em aula
+
+---

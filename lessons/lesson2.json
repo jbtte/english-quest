@@ -1,0 +1,23 @@
+{
+  "lesson": {
+    "lesson_number": 2,
+    "title": "Lesson 2 – Pokémon Emergency",
+    "cards_deck": {
+      "total_cards": 16,
+      "word_sparks": ["popcorn", "charger", "cookie", "hoodie"],
+      "emotion_triggers": ["suspicious", "scared", "annoyed", "relieved"],
+      "event_cards": [
+        "Object Drop!",
+        "Time is running out!",
+        "Something moves in your pocket!",
+        "A Pokémon cries!"
+      ],
+      "mystery_cards": [
+        "Hidden Object",
+        "Hidden Emotion",
+        "Hidden Problem",
+        "Hidden Reason"
+      ]
+    }
+  }
+}

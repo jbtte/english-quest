@@ -1,310 +1,297 @@
-/* ================== BASE ================== */
+/* ========= BASE ========= */
 
 body.dark {
   margin: 0;
   font-family: "Baloo 2", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   background: #050505;
   color: #f2f2f2;
-  font-size: 22px;
-  line-height: 1.5;
-  font-weight: 500;
 }
-
 
 .app-container {
   min-height: 100vh;
-  padding: 16px;
+  padding: 12px;
   box-sizing: border-box;
 }
 
-/* ================== HOME (index.html) ================== */
+/* ========= HEADER ========= */
 
 .app-header {
   text-align: center;
-  margin-bottom: 24px;
+  margin-bottom: 8px;
 }
 
 .app-header h1 {
   margin: 0;
-  font-size: 2.4rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-size: 1.6rem;
 }
 
 .subtitle {
-  margin-top: 8px;
-  color: #ccc;
-}
-
-.music-section {
-  text-align: center;
-  margin-bottom: 32px;
-}
-
-.primary-btn {
-  background: #f2f2f2;
-  color: #000;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 999px;
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-.primary-btn:active {
-  transform: scale(0.97);
-}
-
-.hint {
-  font-size: 0.95rem;
+  margin: 2px 0 0;
+  font-size: 0.9rem;
   color: #aaa;
-  margin-top: 8px;
 }
+
+/* ========= LESSONS GRID ========= */
 
 .lessons-grid h2 {
   text-align: center;
-  margin-bottom: 16px;
+  margin: 8px 0;
+  font-size: 1rem;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(60px, 1fr));
-  gap: 12px;
-  max-width: 600px;
-  margin: 0 auto;
+  grid-template-columns: repeat(4, minmax(50px, 1fr));
+  gap: 8px;
+  max-width: 420px;
+  margin: 0 auto 8px;
 }
 
 .lesson-card {
-  border: 1px solid #555;
   border-radius: 8px;
-  text-align: center;
-  padding: 18px 0;
-  text-decoration: none;
+  border: 1px solid #555;
+  background: #111;
   color: #f2f2f2;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
+  padding: 10px 0;
+  cursor: pointer;
 }
 
 .lesson-card:hover,
 .lesson-card:active {
-  background: #151515;
+  background: #222;
 }
 
-/* ================== LESSON (lesson.html) ================== */
-
-.lesson-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 16px;
+.lesson-card.selected {
+  background: #f2f2f2;
+  color: #000;
+  border-color: #f2f2f2;
 }
 
-.lesson-header h1 {
-  font-size: 1.8rem;
-  margin: 0;
+/* ========= LESSON TITLE ========= */
+
+.lesson-title {
+  text-align: center;
+  font-size: 1rem;
+  margin-bottom: 10px;
+  color: #ddd;
 }
 
-.back-link {
-  color: #aaa;
-  text-decoration: none;
-  font-size: 0.95rem;
-}
+/* ========= CARD DISPLAY ========= */
+/* Tela quase “full card”: fundo escuro, palavra gigante */
 
-.back-link:hover {
-  text-decoration: underline;
-}
-
-/* layout geral: script + cards */
-
-.lesson-layout {
-  display: grid;
-  grid-template-columns: 3fr 1fr;
-  gap: 12px;
-  max-width: 95vw;
-  margin: 0 auto;
-}
-
-/* script panel */
-
-.script-panel,
-.scene-intro,
-.script-list li {
-  font-family: "Indie Flower", "Baloo 2", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-weight: 400;
-}
-
-.script-panel {
-  border: 1px solid #333;
-  border-radius: 12px;
+.card-display {
+  border-radius: 16px;
   padding: 16px;
-  box-sizing: border-box;
-}
-
-.scene-intro {
-  font-size: 24px;
-  color: #dddddd;
   margin-bottom: 16px;
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #101010;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
 }
 
-.script-start {
-  font-size: 24px;
-  text-decoration: underline;
+.card-type-label {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+  opacity: 0.8;
+  color: #b0b0b0;
+}
+
+.card-text {
+  font-size: 2.3rem;
+  text-align: center;
+  text-transform: uppercase;
+  color: #fdfdfd;
+  word-wrap: break-word;
+}
+
+/* Fonte especial apenas para a palavra do card */
+.app-container .card-text {
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+}
+
+/* estado normal (word/emotion/event) */
+.card-display.card-normal .card-text {
+  color: #fdfdfd;
+}
+
+/* MYSTERY: antes de revelar, mostra mensagem neutra */
+.card-display.card-mystery-hidden .card-text {
+  color: #fdfdfd;
+  font-size: 1.4rem;
+}
+
+/* MYSTERY: revelado → vermelho forte */
+.card-display.card-mystery-revealed .card-text {
+  color: #ff5252;
+}
+
+/* ========= BOTÕES ========= */
+
+.primary-btn,
+.secondary-btn {
+  font-family: inherit;
+  border-radius: 999px;
+  border: none;
   cursor: pointer;
-  margin-bottom: 16px;
 }
 
-.script-list {
+.primary-btn.big {
+  width: 100%;
+  padding: 14px 0;
+  font-size: 1.2rem;
+  background: #f2f2f2;
+  color: #000;
+}
+
+.primary-btn.big:active {
+  transform: scale(0.97);
+}
+
+.secondary-btn {
+  margin-top: 8px;
+  padding: 8px 14px;
+  font-size: 0.9rem;
+  background: #303030;
+  color: #f2f2f2;
+}
+
+.secondary-btn:active {
+  transform: scale(0.97);
+}
+
+.draw-button-wrapper {
+  margin-bottom: 14px;
+}
+
+/* ========= SETTINGS ========= */
+
+.settings-panel {
+  border-radius: 12px;
+  border: 1px solid #333;
+  padding: 10px;
+  margin-bottom: 12px;
+  font-size: 0.9rem;
+}
+
+.settings-panel h2 {
+  margin: 0 0 6px;
+  font-size: 1rem;
+}
+
+.setting-row {
+  margin-bottom: 6px;
+}
+
+.setting-row label {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-right: 8px;
+}
+
+/* ========= HISTORY ========= */
+
+.history-panel {
+  border-radius: 12px;
+  border: 1px solid #333;
+  padding: 10px;
+  font-size: 0.9rem;
+}
+
+.history-panel h2 {
+  margin: 0 0 6px;
+  font-size: 1rem;
+}
+
+.history-list {
   list-style: none;
   padding-left: 0;
   margin: 0;
 }
 
-.script-list li {
-  font-size: 26px;
-  line-height: 1.5;
-  margin-bottom: 12px;
-  padding-left: 8px;
-  border-left: 2px solid #444;
+.history-item {
+  margin-bottom: 6px;
 }
 
-.hidden {
+.history-text {
+  font-size: 0.95rem;
+}
+
+.history-meta {
+  font-size: 0.75rem;
+  color: #aaa;
+}
+
+/* ========= RESPONSIVO ========= */
+
+@media (min-width: 768px) {
+  .app-container {
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .card-text {
+    font-size: 2.6rem;
+  }
+}
+
+/* ========= FOCUS MODE ========= */
+
+.focus-controls {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+/* por padrão, só mostra o botão de entrar */
+.focus-exit-btn {
   display: none;
 }
 
-/* personagens A e B com cores diferentes */
-
-.script-list li.speaker-a {
-  color: #ffce66;
-  text-shadow: 0 0 6px rgba(255, 206, 102, 0.6);
+/* quando estiver em modo focus */
+.app-container.focus-mode .lessons-grid,
+.app-container.focus-mode .settings-panel,
+.app-container.focus-mode .history-panel {
+  display: none;
 }
 
-.script-list li.speaker-b {
-  color: #80d8ff;
-  text-shadow: 0 0 6px rgba(128, 216, 255, 0.6);
+/* deixa o título do lesson mais discreto em focus */
+.app-container.focus-mode .lesson-title {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  opacity: 0.8;
 }
 
-/* palavras candidatas à troca no script */
-.swap-candidate {
-  background: rgba(255, 255, 255, 0.08);
-  padding: 0 3px;
-  border-radius: 4px;
-  border-bottom: 2px dashed #888;
-  cursor: pointer;
+/* card vira protagonista */
+.app-container.focus-mode .card-display {
+  min-height: 55vh;
 }
 
-/* mantém o brilho de A e B mesmo no highlight */
-.script-list li.speaker-a .swap-candidate {
-  text-shadow: 0 0 6px rgba(255, 206, 102, 0.9);
+/* palavra ainda maior em foco */
+.app-container.focus-mode .card-text {
+  font-size: 3rem;
 }
 
-.script-list li.speaker-b .swap-candidate {
-  text-shadow: 0 0 6px rgba(128, 216, 255, 0.9);
+/* botão draw continua logo abaixo do card */
+.app-container.focus-mode .draw-button-wrapper {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
-/* popup de opções ao tocar na palavra */
-.swap-popup {
-  position: absolute;
-  background: #151515;
-  border: 1px solid #555;
-  border-radius: 8px;
-  padding: 6px 0;
-  z-index: 1000;
-  min-width: 120px;
-  max-width: 240px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+/* alternância dos botões */
+.app-container.focus-mode .focus-enter-btn {
+  display: none;
 }
 
-.swap-option {
-  padding: 6px 12px;
-  font-size: 20px;
-  white-space: nowrap;
-}
-
-.swap-option:hover {
-  background: #222;
-}
-
-/* ================== CARDS ================== */
-
-.cards-panel {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  padding: 8px 0;
-  box-sizing: border-box;
-}
-
-.card {
-  border: none;
-  border-radius: 0;
-  padding: 4px 0;
-  cursor: pointer;
-  user-select: none;
-  transition: transform 0.1s;
-  text-align: center;
-}
-
-.card:hover {
-  transform: scale(1.01);
-}
-
-.card:active {
-  transform: scale(0.97);
-}
-
-.card-output {
-  margin: 0;
-  font-size: 24px;
-  color: #f2f2f2;
-  border-bottom: 2px solid #444;
-  padding-bottom: 8px;
-}
-
-/* ================== RESPONSIVO ================== */
-
-@media (max-width: 800px) {
-  .lesson-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .cards-panel {
-    flex-direction: row;
-    justify-content: space-around;
-    margin-top: 24px;
-  }
-
-  .card-output {
-    font-size: 20px;
-    padding-bottom: 6px;
-  }
-}
-
-@media (orientation: landscape) and (min-width: 900px) {
-  body.dark {
-    font-size: 24px;
-  }
-
-  .script-list li {
-    font-size: 28px;
-  }
-
-  .card-output {
-    font-size: 26px;
-  }
-}
-
-/* palavras candidatas à troca no script */
-.swap-candidate {
-  background: rgba(255, 255, 255, 0.08);
-  padding: 0 3px;
-  border-radius: 4px;
-  border-bottom: 2px dashed #888;
-}
-
-/* mantém o brilho de A/B mesmo com highlight */
-.script-list li.speaker-a .swap-candidate {
-  text-shadow: 0 0 6px rgba(255, 206, 102, 0.9);
-}
-
-.script-list li.speaker-b .swap-candidate {
-  text-shadow: 0 0 6px rgba(128, 216, 255, 0.9);
+.app-container.focus-mode .focus-exit-btn {
+  display: inline-block;
 }
